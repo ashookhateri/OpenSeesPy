@@ -41,6 +41,7 @@ for V in $PY_VERSIONS; do
   cmake "$WORK/OpenSees" -G Ninja -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_Fortran_COMPILER=flang \
     -DTK_LIBRARY="$PREFIX/lib/libtcl8.6.so" -DTK_INCLUDE_PATH="$PREFIX/include" -DTK_WISH="$PREFIX/bin/tclsh" \
+    -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_C_FLAGS=-fPIC -DCMAKE_CXX_FLAGS=-fPIC -DCMAKE_Fortran_FLAGS=-fPIC \
     -DPython_FOUND=TRUE -DPython_INCLUDE_DIRS="$PYDIR/Include" \
     -DPython_LIBRARIES="$PYDIR/libpython$MM.so" \
     -DCMAKE_SHARED_LINKER_FLAGS="-Wl,--allow-shlib-undefined -Wl,-z,max-page-size=16384"
