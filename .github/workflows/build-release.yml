@@ -57,4 +57,5 @@ jobs:
           files: dist/*
           generate_release_notes: true
       - name: Publish to PyPI
+        continue-on-error: true   # needs PyPI trusted publisher (see BUILD_GUIDE_FA.md)
         uses: pypa/gh-action-pypi-publish@release/v1
