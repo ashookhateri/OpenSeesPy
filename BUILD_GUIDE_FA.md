@@ -27,7 +27,7 @@ git push -u origin main
 
 ## ۴. انتشار نسخه
 ```
-git tag v3.7.1.0
+git tag v3.7.1.1
 git push --tags
 ```
 Workflow خودش می‌سازد، Release در GitHub می‌سازد و روی PyPI منتشر می‌کند.

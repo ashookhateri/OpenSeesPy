@@ -10,6 +10,17 @@ s = s.replace("find_package(MPI)", "# find_package(MPI) disabled for Android")
 s = s.replace("find_package(MKL)", "# find_package(MKL) disabled for Android")
 # 3. Let us inject the target Python (headers + stub libpython) from the command line.
 open(p, "w").write(s)
+# 3b. sparsePython SOEs call find_package(Python3), which finds Termux's own
+#     Python (3.14) and links/compiles against it. Use the injected target
+#     Python headers instead and leave libpython to the host app.
+for rel in ("SRC/system_of_eqn/eigenSOE/sparsePython/CMakeLists.txt",
+            "SRC/system_of_eqn/linearSOE/sparsePython/CMakeLists.txt"):
+    f = sys.argv[1] + "/" + rel
+    t = open(f).read()
+    t = t.replace("find_package(Python3 COMPONENTS Development REQUIRED)", "")
+    t = t.replace("target_link_libraries(OPS_SysOfEqnPython PRIVATE Python3::Python)",
+                  "target_include_directories(OPS_SysOfEqnPython PRIVATE ${Python_INCLUDE_DIRS})")
+    open(f, "w").write(t); print("fixed", rel)
 print("patched", p)
 
 # 4. Source fixes that LLVM flang rejects (gfortran only warns).

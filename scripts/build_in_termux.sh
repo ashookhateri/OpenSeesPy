@@ -47,6 +47,15 @@ for V in $PY_VERSIONS; do
     -DCMAKE_SHARED_LINKER_FLAGS="-Wl,--allow-shlib-undefined -Wl,-z,max-page-size=16384"
   ninja -k 0 -j"$(nproc)" OpenSeesPy
   cp "$B/OpenSeesPy.so" "$OUT/bin/opensees_$TAG.so"
+  # Drop any libpython the module must not need (only libpython$MM is provided
+  # by the host app), then fail loudly if a wrong one is still referenced.
+  for L in $(readelf -d "$OUT/bin/opensees_$TAG.so" | sed -n 's/.*\[\(libpython[0-9.]*\.so[0-9.]*\)\].*/\1/p'); do
+    [ "$L" = "libpython$MM.so" ] || patchelf --remove-needed "$L" "$OUT/bin/opensees_$TAG.so"
+  done
+  readelf -d "$OUT/bin/opensees_$TAG.so" | grep NEEDED
+  if readelf -d "$OUT/bin/opensees_$TAG.so" | grep -q "libpython" && ! readelf -d "$OUT/bin/opensees_$TAG.so" | grep -q "libpython$MM.so"; then
+    echo "wrong libpython in $TAG"; exit 1
+  fi
   cd "$WORK"
 done
 
