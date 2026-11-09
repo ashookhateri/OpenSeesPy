@@ -8,7 +8,7 @@ version = "3.7.1.1"
 description = "OpenSeesPy prebuilt for Android arm64 (Pydroid 3, Termux)"
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{ name = "Amir Khateri" }]
+authors = [{ name = "Dr. Amir Khateri" }]
 license = { text = "OpenSees license (UC Berkeley), see LICENSE" }
 classifiers = [
   "Operating System :: Android",

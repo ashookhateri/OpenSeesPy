@@ -18,7 +18,7 @@ OpenSees is a finite element framework used by structural and geotechnical engin
 
 ### Author
 
-**Amir Khateri** — GitHub: [@ashookhateri](https://github.com/ashookhateri)
+**Dr. Amir Khateri** — GitHub: [@ashookhateri](https://github.com/ashookhateri)
 
 ### Features
 
@@ -128,7 +128,7 @@ OpenSees یک چارچوب اجزای محدود است که مهندسان سا
 
 ### سازنده
 
-**امیر خاطری (Amir Khateri)** — گیت‌هاب: [@ashookhateri](https://github.com/ashookhateri)
+**دکتر امیر خاطری (Dr. Amir Khateri)** — گیت‌هاب: [@ashookhateri](https://github.com/ashookhateri)
 
 ### ویژگی‌ها
 
