@@ -1,0 +1,6 @@
+out/
+dist/
+build/
+*.egg-info/
+openseespyandroid/bin/
+openseespyandroid/libs/

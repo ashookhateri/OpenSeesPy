@@ -1,0 +1,60 @@
+name: Build & release openseespyandroid
+
+on:
+  push:
+    branches: ["android"]
+    tags: ["v*"]          # git tag v3.7.1.0 && git push --tags  -> build + Release + PyPI
+  workflow_dispatch:      # manual test build (no publish)
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04-arm          # native arm64 runner, no emulation
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build OpenSeesPy inside Termux (Android aarch64 userland)
+        run: |
+          chmod -R a+rwx .
+          docker run --rm --privileged \
+            -v "$PWD:/data/data/com.termux/files/home/repo" \
+            -e PY_VERSIONS="3.11.9 3.12.8 3.13.1" \
+            -e OUT=/data/data/com.termux/files/home/repo/out \
+            termux/termux-docker:aarch64 \
+            bash -lc 'cd ~/repo && bash scripts/build_in_termux.sh'
+
+      - name: Put binaries into the package
+        run: |
+          sudo chown -R "$USER" out
+          mkdir -p openseespyandroid/bin openseespyandroid/libs
+          cp out/bin/*.so openseespyandroid/bin/
+          cp out/libs/* openseespyandroid/libs/
+          ls -la openseespyandroid/bin openseespyandroid/libs
+
+      - name: Build wheel (py3-none-any) + sdist
+        run: |
+          python3 -m pip install --upgrade build
+          python3 -m build
+          ls -la dist
+
+      - uses: actions/upload-artifact@v4
+        with: { name: dist, path: dist/ }
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write     # GitHub Release
+      id-token: write     # PyPI trusted publishing
+    environment: pypi
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { name: dist, path: dist/ }
+      - name: GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openseespyandroid"
+version = "3.7.1.0"
+description = "OpenSeesPy prebuilt for Android arm64 (Pydroid 3, Termux)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "OpenSees license (UC Berkeley), see LICENSE" }
+classifiers = [
+  "Operating System :: Android",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering",
+]
+
+[project.urls]
+Upstream = "https://github.com/OpenSees/OpenSees"
+OpenSeesPy = "https://github.com/zhuminjie/OpenSeesPy"
+
+[tool.setuptools]
+packages = ["openseespyandroid"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+openseespyandroid = ["libs/*.so*", "bin/*.so", "LICENSE*"]
