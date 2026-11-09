@@ -18,10 +18,10 @@ jobs:
           chmod -R a+rwx .
           docker run --rm --privileged \
             -v "$PWD:/data/data/com.termux/files/home/repo" \
-            -e PY_VERSIONS="3.11.9 3.12.8 3.13.1" \
+            -e PY_VERSIONS="3.10.16 3.11.9 3.12.8 3.13.1 3.14.0" \
             -e OUT=/data/data/com.termux/files/home/repo/out \
             termux/termux-docker:aarch64 \
-            bash -lc 'cd ~/repo && OUT=$HOME/repo/out PY_VERSIONS="3.11.9 3.12.8 3.13.1" bash scripts/build_in_termux.sh'
+            bash -lc 'cd ~/repo && OUT=$HOME/repo/out PY_VERSIONS="3.10.16 3.11.9 3.12.8 3.13.1 3.14.0" bash scripts/build_in_termux.sh'
 
       - name: Put binaries into the package
         run: |

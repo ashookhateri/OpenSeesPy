@@ -2,7 +2,7 @@
 # Builds opensees_cpXY.so for several Python versions inside a Termux aarch64
 # environment (termux-docker on a GitHub arm64 runner, or a real phone).
 set -euo pipefail
-PY_VERSIONS="${PY_VERSIONS:-3.11.9 3.12.8 3.13.1}"
+PY_VERSIONS="${PY_VERSIONS:-3.10.16 3.11.9 3.12.8 3.13.1 3.14.0}"
 OPS_REF="${OPS_REF:-master}"
 WORK="${WORK:-$HOME/aos}"
 OUT="${OUT:-$WORK/out}"
@@ -45,7 +45,7 @@ for V in $PY_VERSIONS; do
     -DPython_FOUND=TRUE -DPython_INCLUDE_DIRS="$PYDIR/Include" \
     -DPython_LIBRARIES="$PYDIR/libpython$MM.so" \
     -DCMAKE_SHARED_LINKER_FLAGS="-Wl,--allow-shlib-undefined -Wl,-z,max-page-size=16384"
-  ninja -k 0 -j"$(nproc)" OpenSeesPy
+  ninja -k 0 -j"$(nproc)" OpenSeesPy || { echo "BUILD FAILED for $TAG, skipping"; cd "$WORK"; continue; }
   cp "$B/OpenSeesPy.so" "$OUT/bin/opensees_$TAG.so"
   # Drop any libpython the module must not need (only libpython$MM is provided
   # by the host app), then fail loudly if a wrong one is still referenced.

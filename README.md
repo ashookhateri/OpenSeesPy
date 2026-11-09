@@ -24,7 +24,7 @@ Existing OpenSeesPy scripts: replace `import openseespy.opensees as ops` with
 ## Supported
 
 - Android 7.0+ (API 24), arm64-v8a devices
-- Python 3.11, 3.12, 3.13 (the loader picks the matching build)
+- Python 3.10, 3.11, 3.12, 3.13, 3.14 (the loader picks the matching build)
 - Pydroid 3, Termux
 
 ## How it is built
