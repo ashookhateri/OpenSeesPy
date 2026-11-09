@@ -21,7 +21,7 @@ jobs:
             -e PY_VERSIONS="3.11.9 3.12.8 3.13.1" \
             -e OUT=/data/data/com.termux/files/home/repo/out \
             termux/termux-docker:aarch64 \
-            bash -lc 'cd ~/repo && bash scripts/build_in_termux.sh'
+            bash -lc 'cd ~/repo && OUT=$HOME/repo/out PY_VERSIONS="3.11.9 3.12.8 3.13.1" bash scripts/build_in_termux.sh'
 
       - name: Put binaries into the package
         run: |
