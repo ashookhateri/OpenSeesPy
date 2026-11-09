@@ -23,3 +23,9 @@ def sub(rel, old, new):
 # SDM-UC.f: esspar declares oths(10) but reads oths(11); caller passes oths(12)
 sub("SRC/material/nD/stressDensityModel/SDM-UC.f",
     "dimension props(nmats), oths(10)", "dimension props(nmats), oths(12)")
+# OpenSeesReliabilityCommands.cpp: passes const char* to char* ctor params (clang error)
+R = "SRC/interpreter/OpenSeesReliabilityCommands.cpp"
+sub(R, "theGradientEvaluator, 0, filename);", "theGradientEvaluator, 0, (char*)filename);")
+sub(R, "theProbabilityTransformation, filename,\n        relSensTag);", "theProbabilityTransformation, (char*)filename,\n        relSensTag);")
+sub(R, "theFORMAnalysis, theFindCurvatures, filename);", "theFORMAnalysis, theFindCurvatures, (char*)filename);")
+sub(R, "printFlag, filename, analysisTypeTag);", "printFlag, (char*)filename, analysisTypeTag);")
