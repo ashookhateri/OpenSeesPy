@@ -44,7 +44,7 @@ for V in $PY_VERSIONS; do
     -DPython_FOUND=TRUE -DPython_INCLUDE_DIRS="$PYDIR/Include" \
     -DPython_LIBRARIES="$PYDIR/libpython$MM.so" \
     -DCMAKE_SHARED_LINKER_FLAGS="-Wl,--allow-shlib-undefined -Wl,-z,max-page-size=16384"
-  ninja -j"$(nproc)" OpenSeesPy
+  ninja -k 0 -j"$(nproc)" OpenSeesPy
   cp "$B/OpenSeesPy.so" "$OUT/bin/opensees_$TAG.so"
   cd "$WORK"
 done
