@@ -8,6 +8,7 @@ version = "3.7.1.1"
 description = "OpenSeesPy prebuilt for Android arm64 (Pydroid 3, Termux)"
 readme = "README.md"
 requires-python = ">=3.10"
+authors = [{ name = "Amir Khateri" }]
 license = { text = "OpenSees license (UC Berkeley), see LICENSE" }
 classifiers = [
   "Operating System :: Android",
@@ -16,6 +17,7 @@ classifiers = [
 ]
 
 [project.urls]
+Homepage = "https://github.com/ashookhateri/OpenSeesPy/tree/android"
 Upstream = "https://github.com/OpenSees/OpenSees"
 OpenSeesPy = "https://github.com/zhuminjie/OpenSeesPy"
 
