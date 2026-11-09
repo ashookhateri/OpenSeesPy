@@ -9,8 +9,11 @@ OUT="${OUT:-$WORK/out}"
 HERE="$(cd "$(dirname "$0")" && pwd)"
 mkdir -p "$WORK" "$OUT/bin" "$OUT/libs"
 
-yes | pkg update
-yes | pkg install clang flang cmake ninja make git python patchelf \
+export DEBIAN_FRONTEND=noninteractive
+APT="apt-get -y -o Dpkg::Options::=--force-confnew"
+$APT update
+$APT upgrade
+$APT install clang flang cmake ninja make git python patchelf \
       libhdf5 zlib eigen tcl binutils curl
 
 cd "$WORK"
