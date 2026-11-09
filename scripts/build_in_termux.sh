@@ -40,6 +40,7 @@ for V in $PY_VERSIONS; do
   B="$WORK/build-$TAG"; rm -rf "$B"; mkdir -p "$B"; cd "$B"
   cmake "$WORK/OpenSees" -G Ninja -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_Fortran_COMPILER=flang \
+    -DTK_LIBRARY="$PREFIX/lib/libtcl8.6.so" -DTK_INCLUDE_PATH="$PREFIX/include" -DTK_WISH="$PREFIX/bin/tclsh" \
     -DPython_FOUND=TRUE -DPython_INCLUDE_DIRS="$PYDIR/Include" \
     -DPython_LIBRARIES="$PYDIR/libpython$MM.so" \
     -DCMAKE_SHARED_LINKER_FLAGS="-Wl,--allow-shlib-undefined -Wl,-z,max-page-size=16384"
