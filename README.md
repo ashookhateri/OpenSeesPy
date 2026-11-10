@@ -34,6 +34,7 @@ OpenSees is a finite element framework used by structural and geotechnical engin
 |---|---|---|
 | **Pydroid 3** (recommended) | [Google Play](https://play.google.com/store/apps/details?id=ru.iiec.pydroid3) | Easiest. Install from the app's Pip menu or its terminal. Includes an editor, console and Matplotlib for plotting results. |
 | **Termux** | [F-Droid](https://f-droid.org/packages/com.termux/) or [GitHub](https://github.com/termux/termux-app) | Full Linux-style terminal. Run `pkg install python` first. Best for long analyses and batch scripts. Use the F-Droid/GitHub build, not the old Google Play one. |
+| **VSCodroid** | [GitHub](https://github.com/rmyndharis/VSCodroid) / [Google Play](https://play.google.com/store/apps/details?id=com.vscodroid) | Full VS Code on Android with a real terminal and Python 3.14 + pip built in. Run `pip install openseespyandroid` in its terminal and use the Run button. Needs Android 11+. |
 | **QPython 3L** | Google Play | Works when its bundled Python is 3.10 or newer and pip is available. |
 | **Code editors with Termux** (e.g. Acode) | Google Play / F-Droid | Write scripts in the editor and run them in Termux. |
 
@@ -144,6 +145,7 @@ OpenSees یک چارچوب اجزای محدود است که مهندسان سا
 |---|---|---|
 | **Pydroid 3** (پیشنهادی) | [گوگل‌پلی](https://play.google.com/store/apps/details?id=ru.iiec.pydroid3) | ساده‌ترین راه. نصب از منوی Pip یا ترمینال برنامه. ویرایشگر، کنسول و Matplotlib برای رسم نمودار نتایج دارد. |
 | **Termux** | [F-Droid](https://f-droid.org/packages/com.termux/) یا [گیت‌هاب](https://github.com/termux/termux-app) | ترمینال کامل شبیه لینوکس. اول `pkg install python` را اجرا کنید. برای تحلیل‌های طولانی و اجرای دسته‌ای بهترین گزینه است. نسخه‌ی F-Droid یا گیت‌هاب را نصب کنید، نه نسخه‌ی قدیمی گوگل‌پلی. |
+| **VSCodroid** | [گیت‌هاب](https://github.com/rmyndharis/VSCodroid) / [گوگل‌پلی](https://play.google.com/store/apps/details?id=com.vscodroid) | خود VS Code روی اندروید با ترمینال واقعی و پایتون 3.14 و pip داخلی. در ترمینالش `pip install openseespyandroid` را بزنید و با دکمه‌ی Run اجرا کنید. اندروید 11 به بالا. |
 | **QPython 3L** | گوگل‌پلی | اگر پایتون داخلش 3.10 یا جدیدتر باشد و pip داشته باشد کار می‌کند. |
 | **ویرایشگرهای کد همراه Termux** (مثل Acode) | گوگل‌پلی / F-Droid | اسکریپت را در ویرایشگر بنویسید و در Termux اجرا کنید. |
 
